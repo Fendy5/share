@@ -1,0 +1,18 @@
+@import "variables";
+
+// 颜色类
+.primaryColor {
+  color: $primaryColor
+}
+.shareColor {
+  color: $shareColor;
+}
+.getColor {
+  color: $getColor
+}
+
+
+.active {
+  font-weight: bold;
+  color: $primaryColor;
+}
