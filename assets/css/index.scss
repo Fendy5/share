@@ -4,13 +4,15 @@
 .primaryColor {
   color: $primaryColor
 }
+.secondaryColor {
+  color: $secondaryColor;
+}
 .shareColor {
   color: $shareColor;
 }
 .getColor {
   color: $getColor
 }
-
 
 .active {
   font-weight: bold;

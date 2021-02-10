@@ -8,6 +8,13 @@ module.exports = {
   ],
   darkMode: false, // or 'media' or 'class'
   theme: {
+    divideColor: () => ({
+      secondary: '#999999'
+    }),
+    borderColor: () => ({
+      secondary: '#999999',
+      active: '#7961bd'
+    }),
     maxWidth: {
       682: '682px'
     },
