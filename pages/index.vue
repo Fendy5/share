@@ -1,7 +1,7 @@
 <template>
   <div class="grid grid-cols-12 gap-4 w-full">
     <!--    卡片-->
-    <div class="col-start-4 rounded-md col-span-6 tablet:col-start-2 tablet:col-span-10 desktop:col-start-5 desktop:col-span-4 bg-white px-12 max-w-682 divide-y-2 divide-dashed">
+    <div class="col-start-4 rounded-md col-span-6 tablet:col-start-2 tablet:col-span-10 desktop:col-start-5 desktop:col-span-4 bg-white px-12 max-w-682 divide-secondary divide-y-2 divide-dashed">
       <!--      卡片头部-->
       <div class="flex justify-center ">
         <svg width="250" height="94" viewBox="0 0 231 76" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
@@ -28,7 +28,7 @@
           </svg>
           <div class="shareColor pt-2">我要分享</div>
         </router-link>
-        <div class="text-center">
+        <router-link to="/get-content" class="text-center">
           <svg width="50" height="50" viewBox="0 0 84 84" class="mx-auto" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
             <rect width="84" height="84" fill="url(#pattern2)" />
             <defs>
@@ -39,7 +39,7 @@
             </defs>
           </svg>
           <div class="getColor pt-2">我要获取</div>
-        </div>
+        </router-link>
       </div>
     </div>
   </div>
