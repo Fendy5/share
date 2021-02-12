@@ -6,7 +6,7 @@
         <!--      验证码主要内容-->
         <div class="flex justify-between mt-12">
           <label v-for="(verify,index) in verifies" :key="index">
-            <input v-model="verifies[index]" maxlength="1" class="w-16 rounded h-16 bg-purple-300 text-2xl p-6">
+            <input :ref="'vy'+index" v-model="verifies[index]" maxlength="1" class="w-16 rounded h-16 bg-purple-300 text-2xl p-6 outline-none" @input="changeVerify" @click="submit">
           </label>
         </div>
       </div>
@@ -15,10 +15,30 @@
 </template>
 
 <script>
+import { getContents } from '@/api'
+
 export default {
   data () {
     return {
       verifies: [null, null, null, null]
+    }
+  },
+  methods: {
+    submit () {
+      this.verifies.some((value, index) => {
+        if (!value) {
+          this.$refs['vy' + index][0].focus()
+          return true
+        }
+      })
+      if (this.verifies.every(value => value)) {
+        getContents({ verify: 1234 }).then(value => {
+          console.log(value)
+        })
+      }
+    },
+    changeVerify () {
+      this.submit()
     }
   }
 }
