@@ -17,13 +17,19 @@ export default {
   },
 
   proxy: {
-    '/dev': {
+    '/dev-api': {
       target: 'http://127.0.0.1:6011',
+      changeOrigin: true,
       pathRewrite: {
-        '^/dev': ''
+        '^/dev-api': ''
       }
     }
   },
+
+  env: {
+    baseUrl: process.env.BASE_URL || '/dev-api'
+  },
+
   // Global CSS (https://go.nuxtjs.dev/config-css)
   css: [
     // { src: '~assets/css/index.scss', lang: 'scss' }
@@ -48,11 +54,16 @@ export default {
   modules: [
     // https://go.nuxtjs.dev/bootstrap
     // https://go.nuxtjs.dev/axios
-    '@nuxtjs/axios'
+    '@nuxtjs/axios',
+    '@nuxtjs/proxy'
   ],
 
   // Axios module configuration (https://go.nuxtjs.dev/config-axios)
-  axios: {},
+  axios: {
+    proxy: true,
+    prefix: '/dev-api',
+    credentials: true
+  },
 
   // Build Configuration (https://go.nuxtjs.dev/config-build)
   build: {

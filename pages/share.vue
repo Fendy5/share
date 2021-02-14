@@ -18,7 +18,7 @@
           </div>
           <!--      卡片内容-->
           <label>
-            <textarea class="w-full border-none outline-none resize-none p-2 focus:ring-white" rows="7" placeholder="输入文字" />
+            <textarea v-model="content" class="w-full border-none outline-none resize-none p-2 focus:ring-white" rows="7" placeholder="输入文字" />
           </label>
         </div>
       </div>
@@ -42,10 +42,7 @@
           </div>
           <!--      验证码主要内容-->
           <div class="flex justify-between mt-12">
-            <div class="w-16 rounded h-16 bg-purple-300 flex justify-center items-center text-2xl">1</div>
-            <div class="w-16 rounded h-16 bg-purple-300 flex justify-center items-center text-2xl">2</div>
-            <div class="w-16 rounded h-16 bg-purple-300 flex justify-center items-center text-2xl">3</div>
-            <div class="w-16 rounded h-16 bg-purple-300 flex justify-center items-center text-2xl">4</div>
+            <div v-for="(verify,index) in verifies" :key="index" class="w-16 rounded h-16 bg-purple-300 flex justify-center items-center text-2xl">{{ verify }}</div>
           </div>
           <div class="mt-12 secondaryColor text-sm">- 打开平台输入验证码，即可获取分享的内容 -</div>
         </div>
@@ -55,16 +52,25 @@
 </template>
 
 <script>
+import { uploadText } from '@/api'
+
 export default {
   name: 'Share',
   data () {
     return {
+      content: '',
+      verifies: [],
       step: 0
     }
   },
   methods: {
     submit () {
-      this.step = 1
+      uploadText({ content: this.content }).then(value => {
+        if (value.data.status) {
+          this.verifies = (value.data.verify + '').split('')
+        }
+        this.step = 1
+      })
     }
   }
 }
