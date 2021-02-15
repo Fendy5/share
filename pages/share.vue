@@ -66,10 +66,11 @@ export default {
   methods: {
     submit () {
       uploadText({ content: this.content }).then(value => {
-        if (value.data.status) {
+        console.log(value.data)
+        if (value.data.code) {
           this.verifies = (value.data.verify + '').split('')
+          this.step = 1
         }
-        this.step = 1
       })
     }
   }

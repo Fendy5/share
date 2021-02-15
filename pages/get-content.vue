@@ -40,8 +40,12 @@ export default {
       })
       if (this.verifies.every(value => value)) {
         getContents({ verify: this.verifies.join('') }).then(value => {
-          this.content = value.data.content
-          this.step = 1
+          if (value.data.code) {
+            this.content = value.data.content
+            this.step = 1
+          } else {
+            console.log(value.data.message)
+          }
         })
       }
     },

@@ -30,12 +30,16 @@
       <!--    手机菜单-->
       <div class="tablet:flex hidden items-center">
         <!--    菜单图标-->
-        <div class="relative h-6 w-10 cursor-pointer">
-          <div class="w-full h-0.5 bg-gray-600 absolute top-0" />
-          <div class="w-full h-0.5 absolute bg-gray-600 top-3" />
-          <div class="w-full h-0.5 bg-gray-600 absolute top-6" />
+        <div class="relative h-6 w-10 cursor-pointer z-20" @click="menuActive=!menuActive">
+          <div class="w-full h-0.5 bg-gray-600 absolute top-0 transition" :class="{ 'transform':menuActive,'-rotate-45':menuActive,'top-3':menuActive }" />
+          <div class="h-0.5 absolute bg-gray-600 top-3 transition" :class="[menuActive? 'w-0':'w-full']" />
+          <div class="w-full h-0.5 bg-gray-600 absolute transition" :class="[menuActive?'transform rotate-45 top-3':'top-6']" />
         </div>
-       
+      </div>
+      <div class="absolute h-screen z-10 bg-white right-0 pt-20 transition text-center" :class="[menuActive?'w-1/2':'w-0']">
+        <router-link class="font-serif block active pb-8" to="/">首页</router-link>
+        <router-link class="font-serif block pb-8" to="/introduction">产品介绍</router-link>
+        <router-link class="font-serif block pb-8" to="/about-us">联系我们</router-link>
       </div>
     </div>
   </header>
@@ -45,7 +49,9 @@
 export default {
   name: 'Header',
   data () {
-    return {}
+    return {
+      menuActive: true
+    }
   }
 }
 </script>
