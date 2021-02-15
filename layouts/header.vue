@@ -36,7 +36,7 @@
           <div class="w-full h-0.5 bg-gray-600 absolute transition" :class="[menuActive?'transform rotate-45 top-3':'top-6']" />
         </div>
       </div>
-      <div class="absolute h-screen z-10 bg-white right-0 pt-20 transition text-center" :class="[menuActive?'w-1/2':'w-0']">
+      <div v-if="menuActive" class="absolute h-screen z-10 bg-white right-0 pt-20 transition text-center" :class="[menuActive?'w-1/2':'w-0']">
         <router-link class="font-serif block active py-4" to="/">首页</router-link>
         <router-link class="font-serif block py-4" to="/introduction">产品介绍</router-link>
         <router-link class="font-serif block py-4" to="/about-us">联系我们</router-link>
@@ -50,7 +50,7 @@ export default {
   name: 'Header',
   data () {
     return {
-      menuActive: true
+      menuActive: false
     }
   }
 }
