@@ -9,11 +9,11 @@
           <div class="flex justify-around">
             <div class="text-center py-6 primaryColor border-b-2 border-solid border-active w-full cursor-pointer">
               <div class="text-2xl pb-2">文字</div>
-              <div class="text-xs">请输入文字</div>
+              <div class="text-xs tablet:text-2xs">请输入文字</div>
             </div>
             <div class="text-center py-6 w-full cursor-pointer border-b border-dashed border-secondary">
               <div class="text-2xl pb-2">文件</div>
-              <div class="text-xs">上传视频、音频、文件</div>
+              <div class="text-xs tablet:text-2xs">上传视频、音频、文件</div>
             </div>
           </div>
           <!--      卡片内容-->

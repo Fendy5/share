@@ -23,9 +23,9 @@
       </router-link>
       <!--    右边菜单文字-->
       <div class="flex justify-between tablet:hidden items-center">
-        <router-link class="pl-16 font-serif active" to="/">首页</router-link>
-        <router-link class="pl-16 font-serif" to="/introduction">产品介绍</router-link>
-        <router-link class="pl-16 font-serif" to="/about-us">联系我们</router-link>
+        <router-link class="px-8 font-serif" :class="{active:$route.path==='/'}" to="/">首页</router-link>
+        <router-link class="px-8 font-serif" :class="{active:$route.path==='/introduction'}" to="/introduction">产品介绍</router-link>
+        <router-link class="px-8 font-serif" :class="{active:$route.path==='/about-us'}" to="/about-us">联系我们</router-link>
       </div>
       <!--    手机菜单-->
       <div class="tablet:flex hidden items-center tap-color-none">
@@ -37,9 +37,9 @@
         </div>
       </div>
       <div v-if="menuActive" class="absolute h-screen z-10 bg-white right-0 pt-20 transition text-center" :class="[menuActive?'w-1/2':'w-0']">
-        <router-link class="font-serif block active py-4" to="/">首页</router-link>
-        <router-link class="font-serif block py-4" to="/introduction">产品介绍</router-link>
-        <router-link class="font-serif block py-4" to="/about-us">联系我们</router-link>
+        <router-link class="font-serif block py-4" :class="{active:$route.path==='/'}" to="/" @click.native="closeMenu">首页</router-link>
+        <router-link class="font-serif block py-4" :class="{active:$route.path==='/introduction'}" to="/introduction" @click.native="closeMenu">产品介绍</router-link>
+        <router-link class="font-serif block py-4" :class="{active:$route.path==='/about-us'}" to="/about-us" @click.native="closeMenu">联系我们</router-link>
       </div>
     </div>
   </header>
@@ -51,6 +51,15 @@ export default {
   data () {
     return {
       menuActive: false
+    }
+  },
+  created () {
+    console.log(this.$route.path)
+  },
+  methods: {
+    closeMenu () {
+      console.log('1234')
+      this.menuActive = false
     }
   }
 }
