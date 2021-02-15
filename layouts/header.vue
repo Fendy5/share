@@ -28,7 +28,7 @@
         <router-link class="pl-16 font-serif" to="/about-us">联系我们</router-link>
       </div>
       <!--    手机菜单-->
-      <div class="tablet:flex hidden items-center">
+      <div class="tablet:flex hidden items-center tap-color-none">
         <!--    菜单图标-->
         <div class="relative h-6 w-10 cursor-pointer z-20" @click="menuActive=!menuActive">
           <div class="w-full h-0.5 bg-gray-600 absolute top-0 transition" :class="{ 'transform':menuActive,'-rotate-45':menuActive,'top-3':menuActive }" />
@@ -37,9 +37,9 @@
         </div>
       </div>
       <div class="absolute h-screen z-10 bg-white right-0 pt-20 transition text-center" :class="[menuActive?'w-1/2':'w-0']">
-        <router-link class="font-serif block active pb-8" to="/">首页</router-link>
-        <router-link class="font-serif block pb-8" to="/introduction">产品介绍</router-link>
-        <router-link class="font-serif block pb-8" to="/about-us">联系我们</router-link>
+        <router-link class="font-serif block active py-4" to="/">首页</router-link>
+        <router-link class="font-serif block py-4" to="/introduction">产品介绍</router-link>
+        <router-link class="font-serif block py-4" to="/about-us">联系我们</router-link>
       </div>
     </div>
   </header>
