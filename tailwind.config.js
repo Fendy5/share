@@ -9,6 +9,8 @@ module.exports = {
   darkMode: false, // or 'media' or 'class'
   theme: {
     fontSize: {
+      '2xl': '1.5rem',
+      xs: '.75rem',
       '2xs': '.5rem'
     },
     divideColor: () => ({
