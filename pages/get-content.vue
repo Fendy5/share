@@ -11,9 +11,9 @@
             </label>
           </div>
         </div>
-        <div v-else class="bg-white rounded py-8 text-left px-6 max-h-80 overflow-scroll">
-          <p v-if="content">{{ content }}</p>
-          <p v-else class="h-20 flex justify-center items-center text-blue-600 text-xl cursor-pointer" @click="downloadFile">点击下载</p>
+        <div v-else :class="[content?'text-left':'text-center']" class="bg-white rounded py-8 px-6 max-h-80 overflow-scroll">
+          <div v-if="content">{{ content }}</div>
+          <span v-else class="text-blue-600 text-xl cursor-pointer" @click="downloadFile">点击下载</span>
         </div>
       </div>
     </div>

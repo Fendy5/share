@@ -3,7 +3,7 @@
     <!--    主要菜单-->
     <div class="flex justify-between container px-1 tablet:px-4">
       <!--    左边logo-->
-      <router-link to="/">
+      <router-link to="/" @click.native="closeMenu">
         <svg
           width="150"
           height="64"
