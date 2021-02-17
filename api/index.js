@@ -1,4 +1,5 @@
 import request from '~/utils/request'
+import download from '~/utils/download-request'
 
 export function getContents (params) {
   return request({
@@ -29,5 +30,13 @@ export function uploadFileData (data) {
     url: '/api/v1/upload-file',
     method: 'put',
     data
+  })
+}
+
+export function downloadFile (params) {
+  return download({
+    url: 'api/v1/download-file',
+    method: 'get',
+    params
   })
 }

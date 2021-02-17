@@ -12,7 +12,8 @@
           </div>
         </div>
         <div v-else class="bg-white rounded py-8 text-left px-6 max-h-80 overflow-scroll">
-          {{ content }}
+          <p v-if="content">{{ content }}</p>
+          <p v-else class="h-20 flex justify-center items-center text-blue-600 text-xl cursor-pointer" @click="downloadFile">点击下载</p>
         </div>
       </div>
     </div>
@@ -20,13 +21,15 @@
 </template>
 
 <script>
-import { getContents } from '@/api'
+import { downloadFile, getContents } from '@/api'
 
 export default {
+  name: 'GetContents',
   data () {
     return {
       step: 0,
       content: '',
+      filePath: '',
       verifies: [null, null, null, null]
     }
   },
@@ -41,13 +44,21 @@ export default {
       if (this.verifies.every(value => value)) {
         getContents({ verify: this.verifies.join('') }).then(value => {
           if (value.data.code) {
-            this.content = value.data.content
+            if (value.data.content) {
+              this.content = value.data.content
+            } else {
+              this.filePath = value.data.filePath
+            }
             this.step = 1
           } else {
+            // 验证码不正确
             console.log(value.data.message)
           }
         })
       }
+    },
+    downloadFile () {
+      downloadFile({ filePath: this.filePath })
     },
     deleteVerify () {
       const idx = this.verifies.indexOf(null)
