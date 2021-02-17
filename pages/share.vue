@@ -7,19 +7,24 @@
         <div class="col-start-4 rounded-md col-span-6 tablet:col-start-2 tablet:col-span-10 desktop:col-start-5 desktop:col-span-4 bg-white px-12 max-w-682">
           <!--      卡片头部-->
           <div class="flex justify-around">
-            <div class="text-center py-6 primaryColor border-b-2 border-solid border-active w-full cursor-pointer">
+            <div class="text-center py-6 w-full cursor-pointer" :class="[type===1?'border-solid border-active primaryColor border-b-2':'border-dashed border-b']" @click="changeTab(1)">
               <div class="text-2xl pb-2">文字</div>
               <div class="text-xs tablet:text-2xs">请输入文字</div>
             </div>
-            <div class="text-center py-6 w-full cursor-pointer border-b border-dashed border-secondary">
+            <div class="text-center py-6 w-full cursor-pointer border-secondary" :class="[type===2?'border-solid border-active primaryColor border-b-2':'border-dashed border-b']" @click="changeTab(2)">
               <div class="text-2xl pb-2">文件</div>
               <div class="text-xs tablet:text-2xs">上传视频、音频、文件</div>
             </div>
           </div>
           <!--      卡片内容-->
-          <label>
-            <textarea v-model="content" class="w-full border-none outline-none resize-none p-2 focus:ring-white" rows="7" placeholder="输入文字" />
-          </label>
+          <div class="h-48">
+            <textarea v-if="type===1" v-model="content" class="w-full border-none outline-none resize-none p-2 focus:ring-white max-h-48" rows="7" placeholder="输入文字" />
+            <div v-else class="h-48 w-full flex justify-center items-center">
+              <div class="text-2xl cursor-pointer" @click="uploadFile">
+                <svg t="1613479916700" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2139" width="64" height="64"><path d="M554.16 139.63v626.55c0 25.57-17.05 42.63-42.63 42.63-25.57 0-42.62-17.05-42.62-42.63V152.42L306.95 314.39c-17.05 17.05-42.62 17.05-59.67 0-17.05-17.05-17.05-42.63 0-59.67L456.13 45.86c34.09-34.1 85.24-34.1 119.34 0l208.84 208.85c17.05 17.05 17.05 42.62 0 59.67-17.05 17.05-42.62 17.05-59.67 0L554.16 139.63z m383.59 541.31c0-25.57 17.05-42.63 42.63-42.63 25.57 0 42.62 17.05 42.62 42.63v213.11c0 72.46-55.4 127.87-127.86 127.87h-767.2C55.48 1021.92 0.07 966.51 0.07 894.05V680.94c0-25.57 17.05-42.63 42.63-42.63 25.57 0 42.62 17.05 42.62 42.63v213.11c0 25.57 17.05 42.62 42.63 42.62h767.2c25.57 0 42.62-17.05 42.62-42.62V680.94z m0 0" p-id="2140" /></svg>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
       <!--  按钮-->
@@ -52,26 +57,54 @@
 </template>
 
 <script>
-import { uploadText } from '@/api'
+import { uploadFile, uploadFileData, uploadText } from '@/api'
 
 export default {
   name: 'Share',
   data () {
     return {
+      uploaded: true,
+      type: 1, // 1为文本类型，2为文件类型
       content: '',
       verifies: [],
+      filePath: '',
       step: 0
     }
   },
   methods: {
+    uploadFile () {
+      const input = document.createElement('input')
+      input.type = 'file'
+      input.click()
+      const _this = this
+      input.onchange = function () {
+        const file = input.files[0]
+        const form = new FormData()
+        form.append('file', file)
+        uploadFile(form).then(value => {
+          _this.filePath = value.data.path
+        })
+      }
+    },
+    changeTab (index) {
+      this.type = index
+    },
     submit () {
-      uploadText({ content: this.content }).then(value => {
-        console.log(value.data)
-        if (value.data.code) {
-          this.verifies = (value.data.verify + '').split('')
-          this.step = 1
-        }
-      })
+      if (this.type === 1) {
+        uploadText({ content: this.content }).then(value => {
+          if (value.data.code) {
+            this.verifies = (value.data.verify + '').split('')
+            this.step = 1
+          }
+        })
+      } else {
+        uploadFileData({ filePath: this.filePath }).then(value => {
+          if (value.data.code) {
+            this.verifies = (value.data.verify + '').split('')
+            this.step = 1
+          }
+        })
+      }
     }
   }
 }

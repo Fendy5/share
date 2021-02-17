@@ -15,3 +15,19 @@ export function uploadText (data) {
     data
   })
 }
+
+export function uploadFile (data) {
+  return request({
+    url: '/api/v1/upload-file',
+    method: 'post',
+    data
+  })
+}
+
+export function uploadFileData (data) {
+  return request({
+    url: '/api/v1/upload-file',
+    method: 'put',
+    data
+  })
+}
