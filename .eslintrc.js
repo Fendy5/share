@@ -17,6 +17,7 @@ module.exports = {
     'no-trailing-spaces': 0,
     'arrow-parens': 0,
     'no-console': 0,
+    'brace-style': 0,
     'vue/singleline-html-element-content-newline': 0
   }
 }
