@@ -4,7 +4,7 @@ import axios from 'axios'
 const service = axios.create({
   baseURL: process.env.baseUrl, // url = base url + request url
   withCredentials: true, // send cookies when cross-domain requests
-  timeout: 15000 // request timeout
+  timeout: 30000 // request timeout
 })
 
 export default service

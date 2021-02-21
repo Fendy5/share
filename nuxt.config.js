@@ -16,6 +16,8 @@ export default {
     host: '0.0.0.0' // default: localhost
   },
 
+  loading: { color: '#7961bd' },
+
   proxy: {
     '/dev-api': {
       target: 'http://127.0.0.1:6011',
