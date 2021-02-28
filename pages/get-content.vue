@@ -33,9 +33,6 @@ export default {
       verifies: [null, null, null, null]
     }
   },
-  mounted () {
-    this.$message()
-  },
   methods: {
     submit () {
       this.verifies.some((value, index) => {
@@ -55,7 +52,7 @@ export default {
             this.step = 1
           } else {
             // 验证码不正确
-            console.log(value.data.message)
+            this.$message.error(value.data.message)
           }
         })
       }
