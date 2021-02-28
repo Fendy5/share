@@ -33,6 +33,9 @@ export default {
       verifies: [null, null, null, null]
     }
   },
+  mounted () {
+    this.$message()
+  },
   methods: {
     submit () {
       this.verifies.some((value, index) => {

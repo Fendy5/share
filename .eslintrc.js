@@ -18,6 +18,9 @@ module.exports = {
     'arrow-parens': 0,
     'no-console': 0,
     'brace-style': 0,
+    'no-sequences': 0,
+    'no-unexpected-multiline': 0,
+    indent: 0,
     'vue/singleline-html-element-content-newline': 0
   }
 }
