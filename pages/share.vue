@@ -83,6 +83,9 @@ export default {
       step: 0
     }
   },
+  created () {
+    console.log('V1.0.0')
+  },
   methods: {
     deleteFile () {
       this.filePath = ''

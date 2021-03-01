@@ -42,6 +42,7 @@ export default {
         }
       })
       if (this.verifies.every(value => value)) {
+        const loading = this.$loading.service({ fullscreen: true })
         getContents({ verify: this.verifies.join('') }).then(value => {
           if (value.data.code) {
             if (value.data.content) {
@@ -54,6 +55,7 @@ export default {
             // 验证码不正确
             this.$message.error(value.data.message)
           }
+          loading.close()
         })
       }
     },
