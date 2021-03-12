@@ -30,7 +30,7 @@
       <!--    手机菜单-->
       <div class="tablet:flex hidden items-center tap-color-none">
         <!--    菜单图标-->
-        <div class="relative h-6 w-10 cursor-pointer z-20" @click="menuActive=!menuActive">
+        <div class="relative h-5 w-8 cursor-pointer z-20" @click="menuActive=!menuActive">
           <div class="w-full h-0.5 bg-gray-600 absolute top-0 transition" :class="{ 'transform':menuActive,'-rotate-45':menuActive,'top-3':menuActive }" />
           <div class="h-0.5 absolute bg-gray-600 top-3 transition" :class="[menuActive? 'w-0':'w-full']" />
           <div class="w-full h-0.5 bg-gray-600 absolute transition" :class="[menuActive?'transform rotate-45 top-3':'top-6']" />
